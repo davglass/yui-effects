@@ -1,0 +1,17 @@
+body {
+    font-family: verdana;
+}
+.demo {
+    height: 150px;
+    width: 150px;
+    border: 2px solid black;
+    background-color: #ccc;
+    position: relative;
+    font-size: 100%;
+}
+.demo_holder {
+    height: 152px;
+    width: 152px;
+    margin: 15px;
+    float: left;
+}
