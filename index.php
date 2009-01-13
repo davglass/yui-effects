@@ -37,7 +37,6 @@
 <p>This is my attempt to somewhat mimic &amp; improve upon the Combination Effects in script.aculo.us (<a href="http://wiki.script.aculo.us/scriptaculous/show/CombinationEffectsDemo">http://wiki.script.aculo.us/scriptaculous/show/CombinationEffectsDemo</a>)</p>
 <p>The YUI libraries are fantastic, but coming from developing tools with script.aculo.us, I kind of miss the simple combination effects. The power of the YUI libraries is outstanding, if I want to make all of my effects manually.</p>
 <p>I have added some serious enhancements to the Effects. The Effects now support passing in an option called "delay". This will cause the Effect to not execute immediately. Additionally I have added support for a Custom Event called onEffectComplete. Combining the two will allow for more customization (See the Batch Example Below).</p>
-<p>Also check out my <a href="container.php">new Container effects</a>, they can be applied directly to a YUI Panel/Overlay/Container</p>
 <p>Also check out my <a href="ghost.php">new Ghosting effects</a>, you can now set an option called "ghost" that will allow for opacity animation.</p>
 <p>The latest version now monitors the effects animation &amp; will not run again if it is still animating. This will prevent the dreaded "multiple crazy click" problem, where the effect would run on top of itself if the effect was fired off more than once (e.g. from a user clicking it several times).</p>
 <p><b>NOTICE: The latest version now requires my <a href="../tools/">YAHOO.Tools</a> package as well as the YUI libs</b></p>

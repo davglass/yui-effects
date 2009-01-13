@@ -1,33 +1,28 @@
-/*
-* Copyright (c) 2007, Dav Glass <dav.glass@yahoo.com>.
-* Code licensed under the BSD License:
-* http://blog.davglass.com/license.txt
-* All rights reserved.
+/**
+ * @description Provides the YUI with several built-in effect combinations.
+ * @module Effects
+ * @version 0.8
+ * @namespace YAHOO.widget
+ * @requires yahoo, dom, event
 */
 /**
-* @fileoverview Provides the YUI with several built-in effect combinations.
-* @author Dav Glass <dav.glass@yahoo.com>
-* @version 0.8 
-* @class Provides the YUI with several built-in effect combinations.
-* @requires YAHOO.util.Dom
-* @requires YAHOO.util.Anim
-* @requires YAHOO.Tools
-* @class Provides the YUI with several built-in effect combinations.<br>
+* @class Effects
+* @description Provides the YUI with several built-in effect combinations.<br>
 * All effects now support a Custom Event called onEffectComplete.<br>
 * They all now support a new option called delay. If delay is set to true the effect will not immediately execute.<br>
 * You can then call eff.animate(); to animate it later. This way you can delay the execution & bind an onEffectComplete subscriber<br>
 * Then animate the effect.
-* @constructor
 */
 YAHOO.widget.Effects = function() {
     return {
         version: '0.8'
     }
 }();
+
 /**
 * This effect makes the object dissappear with display none.
+* @class Effects.Hide
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
-* @constructor
 */
 YAHOO.widget.Effects.Hide = function(inElm) {
     this.element = YAHOO.util.Dom.get(inElm);
@@ -35,7 +30,9 @@ YAHOO.widget.Effects.Hide = function(inElm) {
     YAHOO.util.Dom.setStyle(this.element, 'display', 'none');
     YAHOO.util.Dom.setStyle(this.element, 'visibility', 'hidden');
 }
+
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.Hide.prototype.toString = function() {
@@ -43,8 +40,8 @@ YAHOO.widget.Effects.Hide.prototype.toString = function() {
 }
 /**
 * This effect makes the object Appear with display block.
+* @class Effects.Show
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
-* @constructor
 */
 YAHOO.widget.Effects.Show = function(inElm) {
     this.element = YAHOO.util.Dom.get(inElm);
@@ -53,14 +50,15 @@ YAHOO.widget.Effects.Show = function(inElm) {
     YAHOO.util.Dom.setStyle(this.element, 'visibility', 'visible');
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.Show.prototype.toString = function() {
     return 'Effect Show [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object fade & disappear.
+* @class Effects.Fade
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -101,20 +99,22 @@ YAHOO.widget.Effects.Fade = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.Fade.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.Fade.prototype.toString = function() {
     return 'Effect Fade [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object fade & appear.
+* @class Effects.Appear
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -133,7 +133,7 @@ YAHOO.widget.Effects.Appear = function(inElm, opts) {
     var attributes = {
         opacity: { from: 0, to: 1 }
     };
-    /**
+    /*
     * Custom Event fired after the effect completes
     * @type Object
     */
@@ -156,20 +156,22 @@ YAHOO.widget.Effects.Appear = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.Appear.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.Appear.prototype.toString = function() {
     return 'Effect Appear [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object act like a window blind and retract.
+* @class Effects.BlindUp
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -246,6 +248,8 @@ YAHOO.widget.Effects.BlindUp = function(inElm, opts) {
 	}
 }
 /**
+* @private
+* @method prepStyle
 * Preps the style of the element before running the Animation.
 */
 YAHOO.widget.Effects.BlindUp.prototype.prepStyle = function() {
@@ -256,6 +260,7 @@ YAHOO.widget.Effects.BlindUp.prototype.prepStyle = function() {
     YAHOO.widget.Effects.Show(this.element);
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.BlindUp.prototype.animate = function() {
@@ -263,14 +268,15 @@ YAHOO.widget.Effects.BlindUp.prototype.animate = function() {
 	this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.BlindUp.prototype.toString = function() {
     return 'Effect BlindUp [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object act like a window blind opening.
+* @class Effects.BlindDown
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -350,6 +356,8 @@ YAHOO.widget.Effects.BlindDown = function(inElm, opts) {
     }
 }
 /**
+* @private
+* @method prepStyle
 * Preps the style of the element before running the Animation.
 */
 YAHOO.widget.Effects.BlindDown.prototype.prepStyle = function() {
@@ -360,6 +368,7 @@ YAHOO.widget.Effects.BlindDown.prototype.prepStyle = function() {
     YAHOO.widget.Effects.Show(this.element);
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.BlindDown.prototype.animate = function() {
@@ -367,14 +376,15 @@ YAHOO.widget.Effects.BlindDown.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.BlindDown.prototype.toString = function() {
     return 'Effect BlindDown [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object slide open from the right.
+* @class Effects.BlindRight
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -454,6 +464,8 @@ YAHOO.widget.Effects.BlindRight = function(inElm, opts) {
     }
 }
 /**
+* @private
+* @method prepStyle
 * Preps the style of the element before running the Animation.
 */
 YAHOO.widget.Effects.BlindRight.prototype.prepStyle = function() {
@@ -463,6 +475,7 @@ YAHOO.widget.Effects.BlindRight.prototype.prepStyle = function() {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.BlindRight.prototype.animate = function() {
@@ -470,14 +483,15 @@ YAHOO.widget.Effects.BlindRight.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.BlindRight.prototype.toString = function() {
     return 'Effect BlindRight [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object slide closed from the left.
+* @class Effects.BlindLeft
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -559,6 +573,8 @@ YAHOO.widget.Effects.BlindLeft = function(inElm, opts) {
     }
 }
 /**
+* @private
+* @method BlindLeft
 * Preps the style of the element before running the Animation.
 */
 YAHOO.widget.Effects.BlindLeft.prototype.prepStyle = function() {
@@ -573,6 +589,7 @@ YAHOO.widget.Effects.BlindLeft.prototype.prepStyle = function() {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.BlindLeft.prototype.animate = function() {
@@ -580,14 +597,15 @@ YAHOO.widget.Effects.BlindLeft.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.BlindLeft.prototype.toString = function() {
     return 'Effect BlindLeft [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object appear to fold up.
+* @class Effects.Fold
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -661,20 +679,22 @@ YAHOO.widget.Effects.Fold = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.Fold.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.Fold.prototype.toString = function() {
     return 'Effect Fold [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object appear to fold out (opposite of Fold).
+* @class Effects.UnFold
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -748,6 +768,8 @@ YAHOO.widget.Effects.UnFold = function(inElm, opts) {
     }
 }
 /**
+* @private
+* @method prepStyle
 * Preps the style of the element before running the Animation.
 */
 YAHOO.widget.Effects.UnFold.prototype.prepStyle = function() {
@@ -757,6 +779,7 @@ YAHOO.widget.Effects.UnFold.prototype.prepStyle = function() {
     this.effect.attributes = attributes;
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.UnFold.prototype.animate = function() {
@@ -765,6 +788,7 @@ YAHOO.widget.Effects.UnFold.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.UnFold.prototype.toString = function() {
@@ -773,8 +797,8 @@ YAHOO.widget.Effects.UnFold.prototype.toString = function() {
 
 
 /**
-* @constructor
 * This effect makes the object shake from Right to Left.
+* @class Effects.ShakeLR
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -848,20 +872,22 @@ YAHOO.widget.Effects.ShakeLR = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.ShakeLR.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.ShakeLR.prototype.toString = function() {
     return 'Effect ShakeLR [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object shake from Top to Bottom.
+* @class Effects.ShakeTB
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -935,20 +961,22 @@ YAHOO.widget.Effects.ShakeTB = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.ShakeTB.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.ShakeTB.prototype.toString = function() {
     return 'Effect ShakeTB [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object drop from sight.
+* @class Effects.Drop
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -997,20 +1025,22 @@ YAHOO.widget.Effects.Drop = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.Drop.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.Drop.prototype.toString = function() {
     return 'Effect Drop [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object flash on and off.
+* @class Effects.Pulse
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -1078,20 +1108,22 @@ YAHOO.widget.Effects.Pulse = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.Pulse.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.Pulse.prototype.toString = function() {
     return 'Effect Pulse [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object shrink from sight.
+* @class Effects.Shrink
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -1142,20 +1174,22 @@ YAHOO.widget.Effects.Shrink = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.Shrink.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.Shrink.prototype.toString = function() {
     return 'Effect Shrink [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object grow.
+* @class Effects.Grow
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -1204,20 +1238,22 @@ YAHOO.widget.Effects.Grow = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.Grow.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.Grow.prototype.toString = function() {
     return 'Effect Grow [' + this.element.id + ']';
 }
 /**
-* @constructor
 * This effect makes the object act like an old TV set.
+* @class Effects.TV
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -1278,12 +1314,14 @@ YAHOO.widget.Effects.TV = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.TV.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.TV.prototype.toString = function() {
@@ -1291,6 +1329,7 @@ YAHOO.widget.Effects.TV.prototype.toString = function() {
 }
 /**
 * This effect makes the object expand & dissappear.
+* @class Effects.Shadow
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -1370,12 +1409,14 @@ YAHOO.widget.Effects.Shadow = function(inElm, opts) {
     }
 }
 /**
+* @method animate
 * Fires off the embedded Animation.
 */
 YAHOO.widget.Effects.Shadow.prototype.animate = function() {
     this.effect.animate();
 }
 /**
+* @method toString
 * String function for reporting to YUI Logger
 */
 YAHOO.widget.Effects.Shadow.prototype.toString = function() {
@@ -1383,6 +1424,7 @@ YAHOO.widget.Effects.Shadow.prototype.toString = function() {
 }
 /**
 * This effect makes the object expand & dissappear.
+* @class Effects.Puff
 * @param {String/HTMLElement} inElm HTML element to apply the effect to
 * @param {Object} options Pass in an object of options for this effect, you can choose the Easing and the Duration
 * <code> <br>var options = (<br>
@@ -1471,333 +1513,3 @@ if (!YAHOO.Tools) {
 }
 
 
-/**
-* @deprecated
-* Effect is depreciated due to the introduction of onEffectComplete<br>
-* This can now bw accomplished via:<br><pre>
-*   eff = new YAHOO.widget.Effects.BlindUp('demo1', { delay: true });<br>
-*   eff.onEffectComplete.subscribe(function() {<br>
-*       eff2 = new YAHOO.widget.Effects.BlindRight('demo1', { delay: true });<br>
-*       eff2.onEffectComplete.subscribe(function() {<br>
-*           eff3 = new YAHOO.widget.Effects.BlindDown('demo1', { delay: true });<br>
-*           eff3.onEffectComplete.subscribe(function() {<br>
-*               eff4 = new YAHOO.widget.Effects.Drop('demo1', { delay: true });<br>
-*               eff4.animate();<br>
-*           });<br>
-*           eff3.animate();<br>
-*       });<br>
-*       eff2.animate();<br>
-*   });</pre>
-*/
-YAHOO.widget.Effects.Batch = function(effects, opts) {
-    //Removed
-}
-
-/**
-* @class
-* This is a namespace call, nothing here to see.
-* @constructor
-*/
-YAHOO.widget.Effects.ContainerEffect = function() {
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindUp (binded)<br>
-*   Hide: BlindDown (binded)<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindUpDownBinded = function(overlay, dur) {
-    var bupdownbinded = new YAHOO.widget.ContainerEffect(overlay, 
-        { attributes: {
-            effect: 'BlindUp',
-            opts: {
-                bind: 'bottom'
-            }
-        },
-            duration: dur
-        }, {
-            attributes: {
-                effect: 'BlindDown',
-                opts: {
-                    bind: 'bottom'
-                }
-            },
-            duration: dur
-        },
-            overlay.element,
-            YAHOO.widget.Effects.Container
-        );
-    bupdownbinded.init();
-    return bupdownbinded;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindUp<br>
-*   Hide: BlindDown<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindUpDown = function(overlay, dur) {
-    var bupdown = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindDown' }, duration: dur }, { attributes: { effect: 'BlindUp' }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bupdown.init();
-    return bupdown;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindLeft (binded)<br>
-*   Hide: BlindRight (binded)<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindLeftRightBinded = function(overlay, dur) {
-    var bleftrightbinded = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindLeft', opts: {bind: 'right'} }, duration: dur }, { attributes: { effect: 'BlindRight', opts: { bind: 'right' } }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bleftrightbinded.init();
-    return bleftrightbinded;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindLeft<br>
-*   Hide: BlindRight<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindLeftRight = function(overlay, dur) {
-    var bleftright = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindRight' }, duration: dur }, { attributes: { effect: 'BlindLeft' } , duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bleftright.init();
-    return bleftright;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindRight<br>
-*   Hide: Fold<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindRightFold = function(overlay, dur) {
-    var brightfold = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindRight' }, duration: dur }, { attributes: { effect: 'Fold' }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    brightfold.init();
-    return brightfold;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindLeft (binded)<br>
-*   Hide: Fold<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindLeftFold = function(overlay, dur) {
-    var bleftfold = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindLeft', opts: { bind: 'right' } }, duration: dur }, { attributes: { effect: 'Fold' }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bleftfold.init();
-    return bleftfold;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: UnFold<br>
-*   Hide: Fold<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.UnFoldFold = function(overlay, dur) {
-    var bunfold = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'UnFold' }, duration: dur }, { attributes: { effect: 'Fold' }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bunfold.init();
-    return bunfold;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindDown<br>
-*   Hide: BlindDrop<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindDownDrop = function(overlay, dur) {
-    var bdowndrop = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindDown' }, duration: dur }, { attributes: { effect: 'Drop' }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bdowndrop.init();
-    return bdowndrop;
-}
-
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindUp (binded)<br>
-*   Hide: BlindDrop<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindUpDrop = function(overlay, dur) {
-    var bupdrop = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindUp', opts: { bind: 'bottom' } }, duration: dur }, { attributes: { effect: 'Drop' }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bupdrop.init();
-    return bupdrop;
-}
-
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindUp (binded)<br>
-*   Hide: BlindDown (binded)<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindUpDownBindedGhost = function(overlay, dur) {
-    var bupdownbinded = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindUp', opts: {ghost: true, bind: 'bottom' } }, duration: dur }, { attributes: { effect: 'BlindDown', opts: { ghost: true, bind: 'bottom'} }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container);
-    bupdownbinded.init();
-    return bupdownbinded;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindUp<br>
-*   Hide: BlindDown<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindUpDownGhost = function(overlay, dur) {
-    var bupdown = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindDown', opts: { ghost: true } }, duration: dur }, { attributes: { effect: 'BlindUp', opts: { ghost: true } }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bupdown.init();
-    return bupdown;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindLeft (binded)<br>
-*   Hide: BlindRight (binded)<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindLeftRightBindedGhost = function(overlay, dur) {
-    var bleftrightbinded = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindLeft', opts: {bind: 'right', ghost: true } }, duration: dur }, { attributes: { effect: 'BlindRight', opts: { bind: 'right', ghost: true } }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bleftrightbinded.init();
-    return bleftrightbinded;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindLeft<br>
-*   Hide: BlindRight<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindLeftRightGhost = function(overlay, dur) {
-    var bleftright = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindRight', opts: { ghost: true } }, duration: dur }, { attributes: { effect: 'BlindLeft', opts: { ghost: true } } , duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bleftright.init();
-    return bleftright;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindRight<br>
-*   Hide: Fold<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindRightFoldGhost = function(overlay, dur) {
-    var brightfold = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindRight', opts: { ghost: true } }, duration: dur }, { attributes: { effect: 'Fold', opts: { ghost: true } }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    brightfold.init();
-    return brightfold;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindLeft (binded)<br>
-*   Hide: Fold<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindLeftFoldGhost = function(overlay, dur) {
-    var bleftfold = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindLeft', opts: { bind: 'right', ghost: true } }, duration: dur }, { attributes: { effect: 'Fold', opts: { ghost: true } }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bleftfold.init();
-    return bleftfold;
-}
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: UnFold<br>
-*   Hide: Fold<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.UnFoldFoldGhost = function(overlay, dur) {
-    var bleftfold = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'UnFold', opts: { ghost: true } }, duration: dur }, { attributes: { effect: 'Fold', opts: { ghost: true } }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bleftfold.init();
-    return bleftfold;
-}
-
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindDown<br>
-*   Hide: BlindDrop<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindDownDropGhost = function(overlay, dur) {
-    var bdowndrop = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindDown', opts: { ghost: true } }, duration: dur }, { attributes: { effect: 'Drop' }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bdowndrop.init();
-    return bdowndrop;
-}
-
-/**
-* @constructor
-* Container Effect:<br>
-*   Show: BlindUp (binded)<br>
-*   Hide: BlindDrop<br>
-* @return Container Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.ContainerEffect.BlindUpDropGhost = function(overlay, dur) {
-    var bupdrop = new YAHOO.widget.ContainerEffect(overlay, { attributes: { effect: 'BlindUp', opts: { bind: 'bottom', ghost: true } }, duration: dur }, { attributes: { effect: 'Drop' }, duration: dur }, overlay.element, YAHOO.widget.Effects.Container );
-    bupdrop.init();
-    return bupdrop;
-}
-
-
-
-/**
-* @class
-* This is a wrapper function to convert my YAHOO.widget.Effect into a YAHOO.widget.ContainerEffects object
-* @constructor
-* @return Animation Effect Object
-* @type Object
-*/
-YAHOO.widget.Effects.Container = function(el, attrs, dur) {
-    var opts = { delay: true };
-    if (attrs.opts) {
-        for (var i in attrs.opts) {
-            opts[i] = attrs.opts[i];
-        }
-    }
-    //var eff = eval('new YAHOO.widget.Effects.' + attrs.effect + '("' + el.id + '", {delay: true' + opts + '})');
-    var func = eval('YAHOO.widget.Effects.' + attrs.effect);
-    var eff = new func(el, opts);
-    
-    /**
-    * Empty event handler to make ContainerEffects happy<br>
-    * May try to attach them to my effects later
-    * @type Object
-    */
-    //eff.onStart = new YAHOO.util.CustomEvent('onstart', this);
-    eff.onStart = eff.effect.onStart;
-    /**
-    * Empty event handler to make ContainerEffects happy<br>
-    * May try to attach them to my effects later
-    * @type Object
-    */
-    //eff.onTween = new YAHOO.util.CustomEvent('ontween', this);
-    eff.onTween = eff.effect.onTween;
-    /**
-    * Empty event handler to make ContainerEffects happy<br>
-    * May try to attach them to my effects later
-    * @type Object
-    */
-    //eff.onComplete = new YAHOO.util.CustomEvent('oncomplete', this);
-    eff.onComplete = eff.onEffectComplete;
-    return eff;
-}
