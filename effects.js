@@ -1,6 +1,6 @@
 /**
  * @description Provides the YUI with several built-in effect combinations.
- * @module Effects
+ * @module effects
  * @version 0.8
  * @namespace YAHOO.widget
  * @requires yahoo, dom, event
